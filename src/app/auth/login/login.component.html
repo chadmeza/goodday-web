@@ -1,0 +1,66 @@
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="box">
+            <h1 class="title is-3">
+                Sign in
+            </h1>
+            <hr> 
+            <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+                <div class="field">
+                    <label class="label is-large">E-mail</label>
+                    <div class="control has-icons-left">
+                        <input 
+                            class="input is-large" 
+                            type="email" 
+                            name="email" 
+                            ngModel 
+                            #emailInput="ngModel" 
+                            required 
+                            email
+                        >
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope fa-xs"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label is-large">Password</label>
+                    <div class="control has-icons-left">
+                        <input 
+                            class="input is-large" 
+                            type="password" 
+                            name="password" 
+                            ngModel 
+                            #passwordInput="ngModel" 
+                            required    
+                        >
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock fa-xs"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column is-two-thirds">
+
+                    </div>
+                    <div class="column is-one-third">
+                        <div class="field has-text-right">
+                            <p class="control">
+                                <button 
+                                    class="button is-primary is-large is-fullwidth" 
+                                    [ngClass]="{ 'is-loading': isLoading }"
+                                    type="submit"
+                                >
+                                    <span class="icon is-medium">
+                                        <i class="fas fa-sign-in-alt"></i>
+                                    </span>
+                                    <span>Sign in</span>
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

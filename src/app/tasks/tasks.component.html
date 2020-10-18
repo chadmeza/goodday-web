@@ -1,0 +1,91 @@
+<section class="section">
+    <div class="container">
+        <div class="notification is-primary is-light" *ngIf="tasks.length <= 0">
+            There are currently <strong>no tasks</strong> to do. Click the + button below to add one.
+        </div>
+        <div class="box" *ngFor="let task of tasks">
+            <div class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <p class="is-size-3">
+                            {{ task.title }}
+                        </p>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <button class="button is-light is-fullwidth" (click)="onEditTask(task)">
+                            <span class="icon is-small">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                            <span>Edit</span>
+                        </button>
+                    </div>
+                    <div class="level-item">
+                        <button 
+                            class="button is-primary is-light is-fullwidth" 
+                            (click)="onRemoveTask(task)"
+                        >
+                            <span class="icon is-small">
+                                  <i class="fas fa-check"></i>
+                            </span>
+                            <span>Complete</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button 
+        class="button is-large is-primary" 
+        style="position: fixed; bottom: 1rem; right: 1rem;"
+        (click)="onAddTask()"
+    >
+        <span class="icon">
+            <i class="fas fa-plus"></i>
+        </span>
+    </button>
+    <div class="modal" [ngClass]="{ 'is-active': isModalActive }">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <form (submit)="onSaveTask(taskForm)" #taskForm="ngForm">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">
+                        <span>{{ mode }} Task</span>
+                    </p>
+                    <button class="delete" aria-label="close" (click)="onCloseModal()"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <div class="control">
+                            <textarea 
+                                class="textarea is-large" 
+                                placeholder="What's next?" 
+                                [value]="mode == 'Edit' ? currentTask.title : ''"
+                                name="title"
+                                ngModel 
+                                #titleInput="ngModel" 
+                                required
+                            >
+                            </textarea>
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot" style="justify-content: flex-end;">
+                    <button class="button" (click)="onCloseModal()">
+                        <span class="icon is-small">
+                            <i class="fas fa-ban"></i>
+                        </span>
+                        <span>Cancel</span>    
+                    </button>
+                    <button class="button is-primary" [ngClass]="{ 'is-loading': isLoading }" type="submit">
+                        <span class="icon is-small">
+                            <i class="fas fa-save"></i>
+                        </span>
+                        <span>Save</span>    
+                    </button>
+                </footer>
+            </form>
+        </div>
+    </div>
+</section>

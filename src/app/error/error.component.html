@@ -1,0 +1,20 @@
+<div class="modal" [ngClass]="{ 'is-active': isActive }">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Oops!</p>
+            <button class="delete" aria-label="close" (click)="toggleError()"></button>
+        </header>
+        <section class="modal-card-body">
+            {{ error }}
+        </section>
+        <footer class="modal-card-foot" style="justify-content: flex-end;">
+            <button class="button is-primary" (click)="onToggleError()">
+                <span class="icon is-small">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span>OK</span>   
+            </button>
+        </footer>
+    </div>
+</div>

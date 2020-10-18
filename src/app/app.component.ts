@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'goodday';
+  errorStatusSubscription: Subscription;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authService.autoLogin();
+  }
 }
