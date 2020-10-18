@@ -53,6 +53,7 @@ export class TasksComponent implements OnInit {
 
   onSaveTask(form: NgForm) {
     if (form.invalid) {
+      form.resetForm();
       return;
     }
     
@@ -64,11 +65,8 @@ export class TasksComponent implements OnInit {
       this.tasksService.updateTask(this.currentTask.id, form.value.title);
     }
 
-    this.mode = '';
-    this.currentTask = {
-      id: '',
-      title: ''
-    };
+    form.resetForm();
+
     this.isModalActive = false;
     this.isLoading = false;
   }

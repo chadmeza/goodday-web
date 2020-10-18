@@ -61,7 +61,7 @@
                             <textarea 
                                 class="textarea is-large" 
                                 placeholder="What's next?" 
-                                [value]="mode == 'Edit' ? currentTask.title : ''"
+                                [value]="mode === 'Edit' ? currentTask.title : ''"
                                 name="title"
                                 ngModel 
                                 #titleInput="ngModel" 
